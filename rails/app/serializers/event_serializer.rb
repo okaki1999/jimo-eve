@@ -5,7 +5,7 @@ class EventSerializer < ActiveModel::Serializer
   def status
     object.status_i18n
   end
-  
+
   def created_at
     object.created_at.strftime("%Y/%m/%d")
   end

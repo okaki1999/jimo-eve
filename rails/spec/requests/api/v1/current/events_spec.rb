@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Api::V1::Current::Events", type: :request do
   describe "GET api/v1/current/events" do
@@ -61,6 +61,7 @@ RSpec.describe "Api::V1::Current::Events", type: :request do
       end
     end
   end
+
   describe "POST api/v1/current/events" do
     subject { post(api_v1_current_events_path, headers:) }
 
