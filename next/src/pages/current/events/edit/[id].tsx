@@ -36,7 +36,7 @@ type ArticleFormData = {
   content: string
 }
 
-const CurrentArticlesEdit: NextPage = () => {
+const CurrentEventsEdit: NextPage = () => {
   useRequireSignedIn()
   const router = useRouter()
   const [user] = useUserState()
@@ -54,7 +54,7 @@ const CurrentArticlesEdit: NextPage = () => {
     setStatusChecked(!statusChecked)
   }
 
-  const url = process.env.NEXT_PUBLIC_API_BASE_URL + '/current/articles/'
+  const url = process.env.NEXT_PUBLIC_API_BASE_URL + '/current/events/'
   const { id } = router.query
   const { data, error } = useSWR(
     user.isSignedIn && id ? url + id : null,
@@ -93,7 +93,7 @@ const CurrentArticlesEdit: NextPage = () => {
       return setSnackbar({
         message: '記事の保存にはタイトルが必要です',
         severity: 'error',
-        pathname: '/current/articles/edit/[id]',
+        pathname: '/current/events/edit/[id]',
       })
     }
 
@@ -101,14 +101,14 @@ const CurrentArticlesEdit: NextPage = () => {
       return setSnackbar({
         message: '本文なしの記事は公開はできません',
         severity: 'error',
-        pathname: '/current/articles/edit/[id]',
+        pathname: '/current/events/edit/[id]',
       })
     }
 
     setIsLoading(true)
 
     const patchUrl =
-      process.env.NEXT_PUBLIC_API_BASE_URL + '/current/articles/' + id
+      process.env.NEXT_PUBLIC_API_BASE_URL + '/current/events/' + id
 
     const headers = {
       'Content-Type': 'application/json',
@@ -131,7 +131,7 @@ const CurrentArticlesEdit: NextPage = () => {
         setSnackbar({
           message: '記事を保存しました',
           severity: 'success',
-          pathname: '/current/articles/edit/[id]',
+          pathname: '/current/events/edit/[id]',
         })
       })
       .catch((err: AxiosError<{ error: string }>) => {
@@ -139,7 +139,7 @@ const CurrentArticlesEdit: NextPage = () => {
         setSnackbar({
           message: '記事の保存に失敗しました',
           severity: 'error',
-          pathname: '/current/articles/edit/[id]',
+          pathname: '/current/events/edit/[id]',
         })
       })
     setIsLoading(false)
@@ -168,7 +168,7 @@ const CurrentArticlesEdit: NextPage = () => {
           }}
         >
           <Box sx={{ width: 50 }}>
-            <Link href="/current/articles">
+            <Link href="/current/events">
               <IconButton>
                 <ArrowBackSharpIcon />
               </IconButton>
@@ -290,4 +290,4 @@ const CurrentArticlesEdit: NextPage = () => {
   )
 }
 
-export default CurrentArticlesEdit
+export default CurrentEventsEdit

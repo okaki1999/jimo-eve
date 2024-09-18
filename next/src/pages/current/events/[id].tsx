@@ -26,18 +26,18 @@ import { useRequireSignedIn } from '@/hooks/useRequireSignedIn'
 import { styles } from '@/styles'
 import { fetcher } from '@/utils'
 
-type CurrentArticleProps = {
+type CurrentEventProps = {
   title: string
   content: string
   createdAt: string
   status: string
 }
 
-const CurrentArticleDetail: NextPage = () => {
+const CurrentEventDetail: NextPage = () => {
   useRequireSignedIn()
   const [user] = useUserState()
   const router = useRouter()
-  const url = process.env.NEXT_PUBLIC_API_BASE_URL + '/current/articles/'
+  const url = process.env.NEXT_PUBLIC_API_BASE_URL + '/current/events/'
   const { id } = router.query
 
   const { data, error } = useSWR(
@@ -47,7 +47,7 @@ const CurrentArticleDetail: NextPage = () => {
   if (error) return <Error />
   if (!data) return <Loading />
 
-  const article: CurrentArticleProps = camelcaseKeys(data)
+  const event: CurrentEventProps = camelcaseKeys(data)
 
   return (
     <Box
@@ -81,7 +81,7 @@ const CurrentArticleDetail: NextPage = () => {
               component="p"
               sx={{ mr: 1, fontSize: { xs: 14, sm: 16 } }}
             >
-              ステータス: {article.status}
+              ステータス: {event.status}
             </Typography>
           </Box>
           <Box sx={{ display: 'flex', gap: '0 8px' }}>
@@ -90,7 +90,7 @@ const CurrentArticleDetail: NextPage = () => {
               component="p"
               sx={{ mr: 1, fontSize: { xs: 14, sm: 16 } }}
             >
-              公開: {article.createdAt}
+              公開: {event.createdAt}
             </Typography>
           </Box>
         </Container>
@@ -106,7 +106,7 @@ const CurrentArticleDetail: NextPage = () => {
             }}
           >
             <Box sx={{ width: 40, height: 40 }}>
-              <Link href={'/current/articles'}>
+              <Link href={'/current/events'}>
                 <Avatar>
                   <Tooltip title="記事の管理に戻る">
                     <IconButton sx={{ backgroundColor: '#DDDDDD' }}>
@@ -125,7 +125,7 @@ const CurrentArticleDetail: NextPage = () => {
                   lineHeight: '40px',
                 }}
               >
-                {article.title}
+                {event.title}
               </Typography>
             </Box>
           </Box>
@@ -141,7 +141,7 @@ const CurrentArticleDetail: NextPage = () => {
               mt: '20px',
             }}
           >
-            {article.createdAt}に公開
+            {event.createdAt}に公開
           </Typography>
         </Box>
         <Box sx={{ display: 'flex', gap: '0 24px' }}>
@@ -160,7 +160,7 @@ const CurrentArticleDetail: NextPage = () => {
                   marginTop: { xs: '24px', sm: '40px' },
                 }}
               >
-                <MarkdownText content={article.content} />
+                <MarkdownText content={event.content} />
               </Box>
             </Card>
           </Box>
@@ -189,7 +189,7 @@ const CurrentArticleDetail: NextPage = () => {
                       <ListItemText primary="ステータス" />
                     </Box>
                     <Box>
-                      <ListItemText primary={article.status} />
+                      <ListItemText primary={event.status} />
                     </Box>
                   </Box>
                 </ListItem>
@@ -209,7 +209,7 @@ const CurrentArticleDetail: NextPage = () => {
                       <ListItemText primary="公開" />
                     </Box>
                     <Box>
-                      <ListItemText primary={article.createdAt} />
+                      <ListItemText primary={event.createdAt} />
                     </Box>
                   </Box>
                 </ListItem>
@@ -222,4 +222,4 @@ const CurrentArticleDetail: NextPage = () => {
   )
 }
 
-export default CurrentArticleDetail
+export default CurrentEventDetail

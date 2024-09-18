@@ -120,7 +120,7 @@ const CurrentEvents: NextPage = () => {
                   )}
                 </>
                 <Box>
-                  <Link href={'/current/articles/edit/' + event.id}>
+                  <Link href={'/current/events/edit/' + event.id}>
                     <Avatar>
                       <Tooltip title="編集する">
                         <IconButton sx={{ backgroundColor: '#F1F5FA' }}>
@@ -131,7 +131,7 @@ const CurrentEvents: NextPage = () => {
                   </Link>
                 </Box>
                 <Box>
-                  <Link href={'/current/articles/' + event.id}>
+                  <Link href={'/current/events/' + event.id}>
                     <Avatar>
                       <Tooltip title="表示を確認">
                         <IconButton sx={{ backgroundColor: '#F1F5FA' }}>
