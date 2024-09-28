@@ -1,3 +1,5 @@
+import dayGridPlugin from '@fullcalendar/daygrid'
+import FullCalendar from '@fullcalendar/react'
 import { Box, Grid, Container, Pagination } from '@mui/material'
 import camelcaseKeys from 'camelcase-keys'
 import type { NextPage } from 'next'
@@ -38,6 +40,9 @@ const Index: NextPage = () => {
 
   return (
     <Box css={styles.pageMinHeight} sx={{ backgroundColor: '#e6f2ff' }}>
+      <Container maxWidth="md" sx={{ pt: 6 }}>
+        <FullCalendar plugins={[dayGridPlugin]} initialView="dayGridMonth" />
+      </Container>
       <Container maxWidth="md" sx={{ pt: 6 }}>
         <Grid container spacing={4}>
           {events.map((event: EventProps, i: number) => (
