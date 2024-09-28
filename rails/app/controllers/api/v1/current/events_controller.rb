@@ -25,6 +25,6 @@ class Api::V1::Current::EventsController < Api::V1::BaseController
   private
 
     def event_params
-      params.require(:event).permit(:title, :content, :status)
+      params.require(:event).permit(:title, :content, :status, :image)
     end
 end
