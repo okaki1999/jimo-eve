@@ -20,9 +20,6 @@ type EventProps = {
   user: {
     name: string
   }
-  image: {
-    url: string
-  }
 }
 
 const Index: NextPage = () => {
