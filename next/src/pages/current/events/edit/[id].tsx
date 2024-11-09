@@ -34,6 +34,7 @@ type ArticleProps = {
 type ArticleFormData = {
   title: string
   content: string
+  avatar?: File
 }
 
 const CurrentEventsEdit: NextPage = () => {
@@ -254,6 +255,32 @@ const CurrentEventsEdit: NextPage = () => {
                     rows={25}
                     sx={{ backgroundColor: 'white' }}
                   />
+                )}
+              />
+            </Box>
+            <Box>
+              <Controller
+                name="avatar"
+                control={control}
+                defaultValue={undefined}
+                render={({ field, fieldState }) => (
+                  <>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      onChange={(e) => {
+                        if (e.target.files && e.target.files.length > 0) {
+                          field.onChange(e.target.files[0])
+                        }
+                      }}
+                      style={{ display: 'block', marginTop: '10px' }}
+                    />
+                    {fieldState.error && (
+                      <span style={{ color: 'red', fontSize: '0.875em' }}>
+                        {fieldState.error.message}
+                      </span>
+                    )}
+                  </>
                 )}
               />
             </Box>

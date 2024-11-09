@@ -337,6 +337,7 @@ DEPENDENCIES
   rubocop-faker
   rubocop-rails
   rubocop-rspec
+  ruby-vips
   tzinfo-data
 
 RUBY VERSION

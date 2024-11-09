@@ -19,6 +19,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import Error from '@/components/Error'
+import FetchImage from '@/components/FetchImage'
 import Loading from '@/components/Loading'
 import MarkdownText from '@/components/MarkdownText'
 import { useUserState } from '@/hooks/useGlobalState'
@@ -31,6 +32,7 @@ type CurrentEventProps = {
   content: string
   createdAt: string
   status: string
+  avatarUrl: string
 }
 
 const CurrentEventDetail: NextPage = () => {
@@ -160,6 +162,7 @@ const CurrentEventDetail: NextPage = () => {
                   marginTop: { xs: '24px', sm: '40px' },
                 }}
               >
+                {event.avatarUrl && <FetchImage avatarUrl={event.avatarUrl} />}
                 <MarkdownText content={event.content} />
               </Box>
             </Card>
